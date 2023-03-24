@@ -5,7 +5,6 @@ import cors from 'cors'
 import dotenv from "dotenv"
 dotenv.config()
 import routes from "./routes/index.js"
-import { QAFormController } from './controller/QAFormController.js'
 
 
 // database connection

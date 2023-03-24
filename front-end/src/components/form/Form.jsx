@@ -4,6 +4,7 @@ import { TextField, Button, Box } from "@mui/material";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { Link } from "react-router-dom";
 
 const Form = () => {
   const [questions, setQuestions] = useState([
@@ -173,6 +174,23 @@ const Form = () => {
           <Button sx={{ marginTop: "10px" }} variant="contained" type="submit">
             Submit
           </Button>
+          <Button
+            sx={{ marginTop: "10px", marginLeft: "10px" }}
+            variant="contained"
+          >
+            Live Preview
+          </Button>
+          <Box
+            sx={{
+              display: "flex",
+              flexWrap: "wrap",
+              justifyContent: "center",
+              typography: "body1",
+              "& > :not(style) + :not(style)": {
+                ml: 2,
+              },
+            }}
+          ></Box>
         </form>
       </Box>
     </>

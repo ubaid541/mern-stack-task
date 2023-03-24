@@ -1,7 +1,9 @@
 import express from "express"
-import { QAFormController } from "../controller/QAFormController.js"
+import QAFormController  from "../controller/QAFormController.js"
 const router = express.Router()
 
-router.post("/qa",QAFormController)
+router.get("/qa",QAFormController.getQA)
+router.post("/qa",QAFormController.addQA)
+router.put("/qa",QAFormController.updateQA)
 
 export default router

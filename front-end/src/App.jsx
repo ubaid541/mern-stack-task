@@ -1,17 +1,17 @@
-
-import { Box, Stack } from '@mui/material'
-import './App.css'
-import Form from './form/Form'
+import { Box, Stack } from "@mui/material";
+import "./App.css";
+import Form from "./components/form/Form";
+import QAList from "./components/list/QAList";
 
 function App() {
-
   return (
     <Box>
       <Stack direction="col" justifyContent="center">
-         <Form/>
+        <Form />
+        <QAList />
       </Stack>
     </Box>
-  )
+  );
 }
 
-export default App
+export default App;

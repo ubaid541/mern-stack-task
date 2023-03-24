@@ -1,9 +1,9 @@
 import QAModal from "../model/QAModal.js"
-import {createError} from "../utils/error.js"
 
-const QAFormController = async (req,res,next)=>{
+const QAFormController = {
 
-    const { question, answer } = req.body;
+    async addQA(req,res,next){
+        const { question, answer } = req.body;
 
     if (!question || !answer) {
       return res.status(409).json( 'Question or answer field is empty');
@@ -33,6 +33,35 @@ const QAFormController = async (req,res,next)=>{
         console.log(error);
         next(error)
     }
+    },
+
+    async getQA(req,res,next){
+        try {
+            const qa = await QAModal.find(null,null,{sort : {'createdAt' : -1}})
+            res.status(200).json(qa)
+        } catch (error) {
+            console.log(error);
+            next(error)
+        }
+    },
+
+    async updateQA(req, res, next) {
+        console.log(req.body);
+        console.log(req.body.selectedQuestion);
+        try {
+          const qa = await QAModal.updateOne(
+            { question: req.body.selectedQuestion },
+            { $push: { answer: req.body.customAnswer } }
+          );
+          res.status(200).json("Successfully updated.");
+        } catch (error) {
+          console.log(error);
+          next(error);
+        }
+      }
+      
+
+
 }
 
-export {QAFormController}
+export default QAFormController
