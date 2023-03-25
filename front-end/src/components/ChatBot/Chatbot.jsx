@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { styled } from "@mui/material";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
+import axios from "axios";
 
 const useStyles = styled((theme) => ({
   chatbot: {
@@ -32,9 +33,20 @@ const Chatbot = ({ open, setOpen }) => {
     setInput(e.target.value);
   };
 
-  const handleSend = () => {
+  const handleSend = async () => {
     // code to handle user input and get bot response goes here
     setOutput(input);
+    try {
+      const sendMsg = await axios.post("http://localhost:5000/chatbot", {
+        question: input,
+      });
+
+      setOutput(sendMsg?.data?.answer.trim());
+
+      console.log(sendMsg?.data);
+    } catch (error) {
+      console.log(error);
+    }
     setInput("");
   };
 

@@ -106,44 +106,9 @@ const QAFormController = {
         }
       },
 
-    //   async aichatbot(req,res,next){
-    //     console.log(req.body,"hi");
-    //     const qas = await QAModal.find(null,null,{sort : {'createdAt' : -1}})
-
-    //      // Convert the raw QAs into numerical vectors
-    // const trainingData = qas.map(qa => ({
-    //     input: qa.question,
-    //     output: qa.answer
-    //   }));
-
-    // //   console.log("training",trainingData);
-  
-    //   // Define the neural network architecture
-    //   const net = new brain.recurrent.LSTM();
-  
-    //   // Train the neural network
-    //   net.train(trainingData);
-  
-    //   // Create an API to get answers to user questions
-    //   const getAnswer = (question) => {
-    //     const predictedAnswer = net.run(question);
-    //     if (predictedAnswer) {
-    //       return predictedAnswer;
-    //     } else {
-    //       return 'I do not know the answer to that question.';
-    //     }
-    //   }
-
-    //   getAnswer()
-  
-    //   // Test the API
-    //   const testQuestion = 'What is the capital of France?';
-    //   const predictedAnswer = getAnswer(testQuestion);
-  
-    //   console.log(`Question: ${testQuestion}`);
-    //   console.log(`Predicted answer: ${predictedAnswer}`);
-    // }
     async aichatbot(req, res, next) {
+
+      console.log(req.body);
        
         // Train the AI model
         const net = await trainAI();

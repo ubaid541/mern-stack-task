@@ -37,12 +37,9 @@ const QAList = () => {
     const selectedQuestion = event.target.value;
     const question = qaList?.find((q) => q?.question === selectedQuestion);
     selectedQId = question?._id;
-    console.log(selectedQId);
 
     setSelectedQuestion(selectedQuestion);
     setSelectedAnswer(question.answer);
-
-    console.log(selectedAnswer);
   };
 
   const handleCustomAnswerChange = (event) => {
@@ -51,11 +48,17 @@ const QAList = () => {
 
   const handleAddCustomAnswer = async (event) => {
     event.preventDefault();
-    console.log(selectedQId);
-    const response = await axios.put("http://localhost:5000/qa", {
-      customAnswer,
-      selectedQuestion,
-    });
+    try {
+      const response = await axios.put("http://localhost:5000/qa", {
+        customAnswer,
+        selectedQuestion,
+      });
+
+      const res = await axios.get("http://localhost:5000/qa");
+      setQAList(res?.data);
+    } catch (error) {
+      console.log(error);
+    }
 
     console.log(response);
     console.log("submit answer", customAnswer);
@@ -72,7 +75,7 @@ const QAList = () => {
         >
           {qaList?.map((q) => (
             <MenuItem key={q._id} id={q?._id} value={q?.question}>
-              {q?.question + " " + q?._id}
+              {q?.question}
             </MenuItem>
           ))}
         </Select>

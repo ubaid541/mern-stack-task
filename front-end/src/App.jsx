@@ -9,8 +9,8 @@ function App() {
     <Box>
       <Stack direction="col" justifyContent="center">
         <Form />
-        <QAList />
-        <Chat />
+        {/* <QAList />
+        <Chat /> */}
       </Stack>
     </Box>
   );
